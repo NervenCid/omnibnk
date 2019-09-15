@@ -29,7 +29,7 @@ posts = [
         'image_url': 'http://www.montmartre-guide.com/wp-content/uploads/2014/07/amelie_affiche.jpg',
         'director': 'Jean-Pierre Jeunet',
         'language': 'French',
-        'date': '2001',
+        'date': '2001', uuuuuuu
     },
 ]
 '''
