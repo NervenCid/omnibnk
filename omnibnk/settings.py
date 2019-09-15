@@ -33,6 +33,9 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'movies.apps.MoviesConfig',
+    #Instalar primero crispy-forms
+    #pip install django-crispy-forms
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -120,3 +123,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#Instalar primero crispy-forms
+#pip install django-crispy-forms
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
