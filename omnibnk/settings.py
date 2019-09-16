@@ -127,3 +127,6 @@ STATIC_URL = '/static/'
 #Instalar primero crispy-forms
 #pip install django-crispy-forms
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = 'movies-home'
+LOGIN_URL = 'login'

@@ -35,13 +35,18 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarToggle">
                     <div class="navbar-nav mr-auto">
-                        <a class="nav-item nav-link" href="{% url 'movies-home' %}">Home</a>
-                        <a class="nav-item nav-link" href="{% url 'movies-about' %}">About</a>
+                        <a class="nav-item nav-link" href="{% url 'movies-home' %}">Inicio</a>
+                        <a class="nav-item nav-link" href="{% url 'movies-about' %}">Acerca de...</a>
                     </div>
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
-                        <a class="nav-item nav-link" href="#">Login</a>
-                        <a class="nav-item nav-link" href="register">Registrarse</a>
+                    {% if user.is_authenticated %}
+                        <a class="nav-item nav-link" href="{% url 'profile' %}">Mi cuenta</a>
+                        <a class="nav-item nav-link" href="{% url 'logout' %}">Salir</a>
+                    {% else %}
+                        <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                        <a class="nav-item nav-link" href="{% url 'register' %}">Registrarse</a>
+                    {% endif %}
                     </div>
                 </div>
             </div>
