@@ -1,6 +1,7 @@
 #Importamos el modulo render
 from django.shortcuts import render
 
+#Importamos los 'mixin'
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 #Importamos el modulo 'HttpResponse'
@@ -76,7 +77,7 @@ class PostDetailView(DetailView):
     model = Post
     
 #Vista para crear un post
-class PostCreateView(CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['movie_name', 'image_url', 'director', 'language', 'date']
 
@@ -87,11 +88,32 @@ class PostCreateView(CreateView):
         return super().form_valid(form)
 
 #Vista para editar un post
-class PostUpdateView(UpdateView):
+
+
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
     fields = ['movie_name', 'image_url', 'director', 'language', 'date']
 
+    #Validamos
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        #Ignorar el error de super
+        return super().form_valid(form)
+
+    #Hacemos un testeo para prevenir que otros usuarios editen post que no fueron creados por ellos
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
+
 #Vista para eliminar un post
-class PostDeleteView(DeleteView):
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
-    fields = ['movie_name', 'image_url', 'director', 'language', 'date']
+    success_url = '/'
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
