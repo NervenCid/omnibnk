@@ -24,9 +24,11 @@
             <p class="card-text">Idioma: {{ post.language }}</p>
             <p class="card-text">Año de estreno: {{ post.date }}</p>
             <p class="card-text">Autor del Post: {{ post.author }}</p>
-            <!-- Botones -->
-            <a href="{% url 'post-delete' post.id %}" class="btn btn-danger">Eliminar</a>
-            <a href="{% url 'post-update' post.id %}" class="btn btn-warning">Editar</a>
+            {% if post.author == user %}
+                <!-- Botones -->
+                <a href="{% url 'post-delete' post.id %}" class="btn btn-danger">Eliminar</a>
+                <a href="{% url 'post-update' post.id %}" class="btn btn-warning">Editar</a>
+            {% endif %}
             <a href="{% url 'post-detail' post.id %}" class="btn btn-info">Detalles</a>
         </div>
 
