@@ -57,3 +57,5 @@ def about(request):
 #Lista de vistas
 class PostListView(ListView):
     model = Post
+    template_name = 'movies/home.html'
+    context_object_name = 'posts'
