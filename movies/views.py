@@ -4,6 +4,9 @@ from django.shortcuts import render
 #Importamos el modulo 'HttpResponse'
 from django.http import HttpResponse
 
+#Importamos el modulo de lista de vistas
+from django.views.generic import ListView
+
 #Importamos los modelos
 from .models import Post
 
@@ -50,3 +53,7 @@ def home(request):
 def about(request):
     #Renderizamos el archivo 'about.html'
     return render(request, 'movies/about.html')
+
+#Lista de vistas
+class PostListView(ListView):
+    model = Post
