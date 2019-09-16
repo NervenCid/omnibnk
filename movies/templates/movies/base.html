@@ -41,6 +41,7 @@
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
                     {% if user.is_authenticated %}
+                        <a class="btn btn-success" href="{% url 'post-create' %}">Crear una nueva pelicula</a>
                         <a class="nav-item nav-link" href="{% url 'profile' %}">Mi cuenta</a>
                         <a class="nav-item nav-link" href="{% url 'logout' %}">Salir</a>
                     {% else %}

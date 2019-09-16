@@ -22,9 +22,10 @@
         <p class="card-text">Director: {{object.director}}</p>
         <p class="card-text">Idioma: {{ object.language }}</p>
         <p class="card-text">Año de estreno: {{ object.date }}</p>
+        <p class="card-text">Autor del Post: {{ object.author }}</p>
         <!-- Botones -->
-        <a href="#" class="btn btn-danger">Eliminar</a>
-        <a href="#" class="btn btn-warning">Editar</a>
+        <a href="{% url 'post-delete' object.id %}" class="btn btn-danger">Eliminar</a>
+        <a href="{% url 'post-update' object.id %}" class="btn btn-warning">Editar</a>
     </div>
 
 </div>

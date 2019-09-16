@@ -110,6 +110,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 #Vista para eliminar un post
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
+    #Redirigimos al 'home'
     success_url = '/'
 
     def test_func(self):
