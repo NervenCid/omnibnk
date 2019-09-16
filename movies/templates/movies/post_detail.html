@@ -1,0 +1,33 @@
+{% extends "movies/base.html" %}
+
+{% block content %}
+
+<!-- Tarjeta -->
+<div class="card bg-primary mb-3" style="max-width: 150rem;">
+
+    <!-- Imagen en la tarjeta -->
+    <div class="view overlay">
+        <img class="card-img-top" src={{post.image_url}} alt="Card image cap" width="100">
+        <a href="#!">
+            <div class="mask rgba-white-slight"></div>
+        </a>
+    </div>
+
+    <!-- Contenido de  -->
+    <div class="card-body">
+
+        <!-- Titulo -->
+        <h1 class="card-title">{{object.movie_name}}</h1>
+        <!-- Contenido -->
+        <p class="card-text">Director: {{object.director}}</p>
+        <p class="card-text">Idioma: {{ object.language }}</p>
+        <p class="card-text">Año de estreno: {{ object.date }}</p>
+        <!-- Botones -->
+        <a href="#" class="btn btn-danger">Eliminar</a>
+        <a href="#" class="btn btn-warning">Editar</a>
+    </div>
+
+</div>
+
+
+{% endblock %}

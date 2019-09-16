@@ -1,16 +1,24 @@
 #Importamos el modulo render
 from django.shortcuts import render
 
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+
 #Importamos el modulo 'HttpResponse'
 from django.http import HttpResponse
 
 #Importamos el modulo de lista de vistas
-from django.views.generic import ListView
+from django.views.generic import (
+    ListView, 
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView
+    )
 
 #Importamos los modelos
 from .models import Post
 
-#Creamos una lista dummy con los posts
+#Creamos una lista dummy con los posts 'solo pruebas'
 '''
 posts = [
     {
@@ -57,5 +65,33 @@ def about(request):
 #Lista de vistas
 class PostListView(ListView):
     model = Post
+    #<app>/<model>_<viewtype>.html
     template_name = 'movies/home.html'
     context_object_name = 'posts'
+    #Ordenamos los posts
+    ordering = ['-date']
+
+#Vista en detalle
+class PostDetailView(DetailView):
+    model = Post
+    
+#Vista para crear un post
+class PostCreateView(CreateView):
+    model = Post
+    fields = ['movie_name', 'image_url', 'director', 'language', 'date']
+
+    #Validamos
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        #Ignorar el error de super
+        return super().form_valid(form)
+
+#Vista para editar un post
+class PostUpdateView(UpdateView):
+    model = Post
+    fields = ['movie_name', 'image_url', 'director', 'language', 'date']
+
+#Vista para eliminar un post
+class PostDeleteView(DeleteView):
+    model = Post
+    fields = ['movie_name', 'image_url', 'director', 'language', 'date']

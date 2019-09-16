@@ -18,14 +18,15 @@
         <div class="card-body">
     
             <!-- Titulo -->
-            <h4 class="card-title">Card title</h4>
+            <h4 class="card-title">{{post.movie_name}}</h4>
             <!-- Contenido -->
             <p class="card-text">Director: {{post.director}}</p>
             <p class="card-text">Idioma: {{ post.language }}</p>
             <p class="card-text">Año de estreno: {{ post.date }}</p>
             <!-- Botones -->
             <a href="#" class="btn btn-danger">Eliminar</a>
-            <a href="#" class="btn btn-info">Editar</a>
+            <a href="#" class="btn btn-warning">Editar</a>
+            <a href="{% url 'post-detail' post.id %}" class="btn btn-info">Detalles</a>
         </div>
 
     </div>
