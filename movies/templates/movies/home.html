@@ -1,39 +1,42 @@
 {% extends "movies/base.html" %}
 
 {% block content %}
-{% for post in posts %}
-    <!-- Tarjeta -->
-    <div class="card bg-primary mb-3" style="max-width: 18rem;">
-    
-        <!-- Imagen en la tarjeta -->
-        <div class="view overlay">
-            <img class="card-img-top" src= {{post.image_url}}
-                alt="Card image cap" width="100">
-            <a href="#!">
-                <div class="mask rgba-white-slight"></div>
-            </a>
-        </div>
-    
-        <!-- Contenido de  -->
-        <div class="card-body">
-    
-            <!-- Titulo -->
-            <h4 class="card-title">{{post.movie_name}}</h4>
-            <!-- Contenido -->
-            <p class="card-text">Director: {{post.director}}</p>
-            <p class="card-text">Idioma: {{ post.language }}</p>
-            <p class="card-text">Año de estreno: {{ post.date }}</p>
-            <p class="card-text">Autor del Post: {{ post.author }}</p>
-            {% if post.author == user %}
-                <!-- Botones -->
-                <a href="{% url 'post-delete' post.id %}" class="btn btn-danger">Eliminar</a>
-                <a href="{% url 'post-update' post.id %}" class="btn btn-warning">Editar</a>
-            {% endif %}
-            <a href="{% url 'post-detail' post.id %}" class="btn btn-info">Detalles</a>
-        </div>
 
-    </div>
-    
-{% endfor %}
+<div class="card-deck">
+    {% for post in posts %}
+        <!-- Tarjeta -->
+        <div class="card bg-primary mb-3" style="max-width: 18rem; float:none;">
+        
+            <!-- Imagen en la tarjeta -->
+            <div class="view overlay">
+                <img class="card-img-top" src= {{post.image_url}}
+                    alt="Card image cap" width="100">
+                <a href="#!">
+                    <div class="mask rgba-white-slight"></div>
+                </a>
+            </div>
+        
+            <!-- Contenido de  -->
+            <div class="card-body">
+        
+                <!-- Titulo -->
+                <h4 class="card-title">{{post.movie_name}}</h4>
+                <!-- Contenido -->
+                <p class="card-text">Director: {{post.director}}</p>
+                <p class="card-text">Idioma: {{ post.language }}</p>
+                <p class="card-text">Año de estreno: {{ post.date }}</p>
+                <p class="card-text">Autor del Post: {{ post.author }}</p>
+                {% if post.author == user %}
+                    <!-- Botones -->
+                    <a href="{% url 'post-delete' post.id %}" class="btn btn-danger">Eliminar</a>
+                    <a href="{% url 'post-update' post.id %}" class="btn btn-warning">Editar</a>
+                {% endif %}
+                <a href="{% url 'post-detail' post.id %}" class="btn btn-info">Detalles</a>
+            </div>
+
+        </div>
+        
+    {% endfor %}
+</div>
 {% endblock %}
 
