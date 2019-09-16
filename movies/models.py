@@ -2,6 +2,8 @@
 from django.db import models
 #Importamos el modulos para autenticacion de usuarios
 from django.contrib.auth.models import User
+#Importamos el modulo 'reverse'
+from django.urls import reverse
 
 #Creamos el modelo de Post de las peliculas
 class Post(models.Model):
@@ -17,4 +19,6 @@ class Post(models.Model):
     def __str__(self):
         return self.movie_name
 
-
+    #Usamos la absolute_url para redireccionar apropiadamente despues de crear el post
+    def get_absolute_url(self):
+        return reverse('post-detail', kwargs={'pk': self.pk})
