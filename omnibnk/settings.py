@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     #Instalar primero crispy-forms
     #pip install django-crispy-forms
     'crispy_forms',
+    'crispy_bootstrap4', 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
